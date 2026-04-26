@@ -1,0 +1,22 @@
+    A pipeline is a series of processing steps where the output of one step becomes the input of the next — like an assembly line. Each step does one focused job, and data flows through in sequence.                                        
+                                                                                                                                                                                                                                              
+    It's called a pipeline here because raw PDFs go in one end, and structured JSON text comes out the other, passing through several transformation stages in between.                                                                       
+                                                                                                                                                                                                                                              
+    ---                                                                                                                                                                                                                                       
+    The Steps                                                                                                                                                                                                                                 
+
+    Step 1: 01_extract_pymupdf.py — Try the fast/free path first. Attempt to pull text directly from the PDF using PyMuPDF. Check if Arabic tashkeel characters are present in the output. (In your case, the PDFs are scanned images, so this
+     step essentially tells us "we need OCR" and moves on.)
+
+    Step 2: 02_pdf_to_images.py — Convert each PDF page into a PNG image at 300 DPI. This is necessary because the PDFs are scanned — there's no embedded text to extract, only pictures of pages. Claude Vision needs image files to read.
+
+    Step 3: 03_ocr_claude_vision.py — Send each page image to Claude's Vision API with a carefully written prompt telling it to transcribe every Arabic letter and diacritical mark exactly. The raw transcribed text for each page is saved
+    to a file.
+
+    Step 4: 04_validate_tashkeel.py — Quality check. Count how many tashkeel characters appear per page and flag any pages where the density seems too low (possible transcription errors or missed diacritics). Produces a report so you know
+     which pages to manually review.
+
+    Step 5: 05_build_json.py — Take all the raw per-page text files and assemble them into the final structured JSON format organized by volume → chapter → page → paragraph. This is the file the website will actually read.
+
+    ---
+    Flow: PDF → PNG images → OCR text per page → quality check → structured JSON → website

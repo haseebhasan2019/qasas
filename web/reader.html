@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>قصص النبيين</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body class="reader-page">
+
+  <!-- Sidebar -->
+  <nav id="sidebar" class="sidebar">
+    <div class="sidebar-header">
+      <a href="index.html" class="back-link">← الرئيسية</a>
+      <button id="sidebar-close" class="sidebar-close" aria-label="إغلاق القائمة">✕</button>
+    </div>
+    <div id="chapter-list" class="chapter-list">
+      <p class="loading-msg">جاري التحميل...</p>
+    </div>
+  </nav>
+
+  <!-- Overlay -->
+  <div id="overlay" class="overlay"></div>
+
+  <!-- Main content -->
+  <div id="main" class="main-content">
+    <header class="reader-header">
+      <button id="menu-btn" class="menu-btn" aria-label="القائمة">☰</button>
+      <h1 id="chapter-title" class="chapter-title">قصص النبيين</h1>
+      <button id="tashkeel-toggle" class="tashkeel-btn" onclick="toggleTashkeel()" aria-label="تبديل التشكيل">
+        إخفاء التشكيل
+      </button>
+    </header>
+
+    <article id="content" class="arabic-content">
+      <p class="loading-msg">جاري التحميل...</p>
+    </article>
+
+    <nav class="chapter-nav">
+      <button id="prev-btn" class="nav-btn" onclick="navigate(-1)">← السابق</button>
+      <span id="chapter-counter" class="chapter-counter"></span>
+      <button id="next-btn" class="nav-btn" onclick="navigate(1)">التالي →</button>
+    </nav>
+  </div>
+
+  <script src="js/tashkeel.js"></script>
+  <script src="js/reader.js"></script>
+</body>
+</html>

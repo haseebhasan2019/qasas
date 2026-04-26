@@ -1,0 +1,7 @@
+pdfs/
+pipeline/output/images/
+pipeline/output/raw_text/
+.env
+__pycache__/
+*.pyc
+.DS_Store

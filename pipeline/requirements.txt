@@ -1,0 +1,5 @@
+pymupdf
+google-genai
+pillow
+python-dotenv
+tqdm
